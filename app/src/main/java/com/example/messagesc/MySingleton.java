@@ -17,7 +17,10 @@ public class MySingleton {
     }
 
     private RequestQueue getRequestQueue() {
-        return Volley.newRequestQueue(ctx);
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(ctx);
+        }
+        return requestQueue;
     }
 
     public static synchronized MySingleton getInstance(Context context)

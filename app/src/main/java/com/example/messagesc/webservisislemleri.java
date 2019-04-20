@@ -17,7 +17,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class webservisislemleri {
-    private void yaziyiAl(String url2, final Context context) {
+    Context context;
+    String url;
+    String url2;
+
+    public webservisislemleri(Context cont, String url, String url2) {
+        this.context = cont;
+        this.url = url;
+        this.url2 = url2;
+    }
+
+    private void yaziyiAl() {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url2, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -43,7 +53,7 @@ public class webservisislemleri {
 
     }
 
-    public void yaziyiGonder(String url, final Context context) {
+    public void yaziyiGonder() {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -51,7 +61,7 @@ public class webservisislemleri {
                 String url2 = "http://sadakatsizcpre.tr.ht/getir.php";
                 Toast.makeText(context, "" + mesajC.ad.getText().toString() + "eklendi", Toast.LENGTH_LONG).show();
                 mesajC.ad.setText("");
-                yaziyiAl(url2,context);
+                yaziyiAl();
             }
         }, new Response.ErrorListener() {
             @Override
