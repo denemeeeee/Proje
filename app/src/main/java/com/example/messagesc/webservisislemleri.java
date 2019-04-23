@@ -61,7 +61,6 @@ public class webservisislemleri {
                 String url2 = "http://sadakatsizcpre.tr.ht/getir.php";
                 Toast.makeText(context, "" + mesajC.ad.getText().toString() + "eklendi", Toast.LENGTH_LONG).show();
                 mesajC.ad.setText("");
-                yaziyiAl();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -84,7 +83,7 @@ public class webservisislemleri {
 
     String baslik = "";
 
-    private void alinanVerileriNesneyeDoldur(String string) {
+    public void alinanVerileriNesneyeDoldur(String string) {
         try {
             JSONObject response = new JSONObject(string);
             JSONArray arrYazilar = response.getJSONArray("donenVeriler");
@@ -94,6 +93,7 @@ public class webservisislemleri {
 
             }
             mesajC.tv.setText(baslik);
+            baslik="";
 
 
         } catch (JSONException e) {
