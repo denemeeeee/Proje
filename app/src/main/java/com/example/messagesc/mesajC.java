@@ -48,7 +48,9 @@ public class mesajC extends AppCompatActivity {
 
             @Override
             public void handleMessage(Message msg){
+
                 wsi.alinanVerileriNesneyeDoldur(String.valueOf(msg.obj));
+
             }
         };
 
@@ -64,25 +66,7 @@ public class mesajC extends AppCompatActivity {
             public void onClick(View v) {
 
                 wsi.yaziyiGonder();
-                NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                Notification.Builder ibuilder = new Notification.Builder(getApplicationContext());
-                ibuilder.setContentTitle("Mesaj Geldi")
-                        .setContentText(ad.getText().toString())
-                        .setSmallIcon(R.drawable.bildirim)
 
-                        .setAutoCancel(true);
-
-
-                Intent intent= new Intent(getApplicationContext(), mesajC.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
-                ibuilder.setContentIntent(pendingIntent);
-                //telefonun default olarak zil sesini alıp bildirim geldiğinde öttürtttümmm
-                Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                ibuilder.setSound(uri);
-
-
-                Notification nnesne = ibuilder.getNotification();
-            manager.notify(1, nnesne);
             }
         });
 

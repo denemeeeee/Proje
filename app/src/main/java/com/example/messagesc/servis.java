@@ -66,6 +66,7 @@ public class servis extends Service {
                             mesajim.obj = response;
                             mesajC.handler.sendMessage(mesajim);
                             deger = response.length();
+
                         }
                     }
                 }, new Response.ErrorListener() {
