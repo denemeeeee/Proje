@@ -45,13 +45,10 @@ public class mesajC extends AppCompatActivity {
         }else{
             startService(new Intent(context,servis.class));
         }
-
-
         handler = new Handler() {
 
             @Override
             public void handleMessage(Message msg){
-
                 wsi.alinanVerileriNesneyeDoldur(String.valueOf(msg.obj));
             }
         };
@@ -59,13 +56,7 @@ public class mesajC extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 wsi.yaziyiGonder();
-
-
-               // Intent i = new Intent(getApplicationContext(),Notificatioss.class);
-               // startActivity(i);
             }
         });
 
