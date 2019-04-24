@@ -13,12 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import static com.example.messagesc.mesajC.ad;
 
-public class notification extends  AppCompatActivity  {
+public class notification {
 
-
-    public  void Notify(Context context)
+    public void Notify(Context context,NotificationManager manager)
     {
-        NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
         Notification.Builder ibuilder = new Notification.Builder(context);
         ibuilder.setContentTitle("Lovely Day")
                 .setContentText("")
@@ -26,7 +25,7 @@ public class notification extends  AppCompatActivity  {
                 .setAutoCancel(true);
 
 
-        Intent intent= new Intent(this,mesajC.class);
+        Intent intent= new Intent(context,mesajC.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent, 0);
         ibuilder.setContentIntent(pendingIntent);
         //telefonun default olarak zil sesini alıp bildirim geldiğinde öttürtttümmm
@@ -37,4 +36,5 @@ public class notification extends  AppCompatActivity  {
         Notification nnesne = ibuilder.getNotification();
         manager.notify(1, nnesne);
     }
+
 }

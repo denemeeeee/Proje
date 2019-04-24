@@ -1,5 +1,6 @@
 package com.example.messagesc;
 
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,8 @@ import java.util.TimerTask;
 
 public class servis extends Service {
     Context context=this;
+    final notification nt = new notification();
+
     int deger = 0;
     @Nullable
     @Override
@@ -58,6 +61,7 @@ public class servis extends Service {
                 // long zaman = java.lang.System.currentTimeMillis();
                 // SimpleDateFormat bilgi = new SimpleDateFormat("dd MMMM yyyy, EEEE / hh:mm");
                 // final String sonuc = bilgi.format(new Date(zaman));
+
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://sadakatsizcpre.tr.ht/getir.php", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -66,7 +70,8 @@ public class servis extends Service {
                             mesajim.obj = response;
                             mesajC.handler.sendMessage(mesajim);
                             deger = response.length();
-
+                            NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+                            nt.Notify(context,manager);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -78,6 +83,7 @@ public class servis extends Service {
                 MySingleton.getInstance(context).addToRequest(stringRequest);
             }
         });
+
     }
 
     @Override

@@ -32,7 +32,9 @@ public class mesajC extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
+
         final webservisislemleri wsi = new webservisislemleri(getApplicationContext(),url,url2);
+        final notification nt = new notification();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mesaj_sayfasi);
         tv = findViewById(R.id.txViewYazi);
@@ -44,29 +46,26 @@ public class mesajC extends AppCompatActivity {
             startService(new Intent(context,servis.class));
         }
 
+
         handler = new Handler() {
 
             @Override
             public void handleMessage(Message msg){
 
                 wsi.alinanVerileriNesneyeDoldur(String.valueOf(msg.obj));
-
             }
         };
-
-
-
-
-
-
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
                 wsi.yaziyiGonder();
 
+
+               // Intent i = new Intent(getApplicationContext(),Notificatioss.class);
+               // startActivity(i);
             }
         });
 
